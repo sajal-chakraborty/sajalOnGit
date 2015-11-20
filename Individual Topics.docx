@@ -1,1 +1,150 @@
-sd
+
+
+
+
+Contents
+Design patterns	2
+Strategy Design pattern	2
+State Design Pattern	6
+Difference/Similarity between Strategy and State design patterns.	6
+Decorator Design pattern	6
+Adapter Design Pattern	6
+Singletone Designpattern	6
+Different latest options of Singletone design pattern.	6
+Spring Related	6
+DI concepts and how to achieve	6
+Constructor based dependency injection – different examples.	6
+Setter based Dependency injection – different examples.	6
+Static factory based dependency injection.	6
+Auto wiring concepts and examples.	6
+AOP concepts and examples.	6
+Property file loading and how to use that in java code.	6
+Message source by property file with example.	6
+Web service client part using JAXB as marshalling.	6
+Web service exposer example	6
+Wiring using annotations, component scan and stereotypes.	6
+JDBC template to do insert, update etc. example	6
+DAO using Hibernate Dao Support and generic Dao pattern with ready example	6
+ProxyFactoryBean to initialize spring bean in runtime without loading application context.	6
+bean scopes	6
+Custom Scope	8
+Event publishing	9
+Lifecycle callbacks	9
+Pre and post initiallization.	9
+Initializing Spring beans for the first layer class where application context has not loaded by framework.	9
+General topics	9
+Eh cache example for configuration to maintain different cache effectively.	9
+Make asynchronous call and respond as synchronous one.	9
+Maven profile and classifier to generate different named artifact.	9
+Process Related	9
+How to manage defects using HP ALM and what are the lifecycle we followed etc.	9
+JIRA. What are the process of delivering story etc.	9
+General  day to day activity related to projects like Daily calls, Scrum calls etc.	9
+
+
+
+
+
+Design patterns
+Strategy Design pattern
+
+Strategy Design Patterns is one the behavioral design pattern we use frequently in programming.
+What it is – This design pattern is used when we have multiple related algorithms (read Strategies) for a specific task and client can choose any one of the algorithm to do its job and the supplies the real implementation to the actual method and pass it to the common generic method ( called Context). 
+Real world example – Collections.sort(list, comparator) method where client actually passes suitable comparator based on the requirement in runtime to the method and the method is generic to accept any comparator type. Based on the comparator being passed, same collection can be sorted differently.
+Based on Open/closed principle – like we don’t need to modify the context [closed for modification] and can choose and add any implementation [open for extension]. In real example Colelctions.sort – we don’t need to change the sort method to achieve different sort and supplying different comparator in runtime.
+ 
+
+
+
+Code example in java
+ 
+Strategy Interface
+ 
+Credit Card Strategy
+ 
+Paytm Strategy
+ 
+Business Context 
+ 
+
+Difference between Strategy and State design Pattern in Java?
+This is an interesting Java design pattern interview questions as both Strategy and State pattern has same structure. If you look at UML class diagram for both pattern they look exactly same, but there intent is totally different. State design pattern is used to define and mange state of object, while Strategy pattern is used to define a set of interchangeable algorithm and let's client to choose one of them. So Strategy pattern is a client driven pattern while Object can manage there state itself.
+
+When to use Strategy Design Pattern in Java?
+Strategy pattern in quite useful for implementing set of related algorithms e.g. compression algorithms, filtering strategies etc. Strategy design pattern allows you to create Context classes, which uses Strategy implementation classes for applying business rules. This pattern follow open closed design principle and quite useful in Java. One example of Strategy pattern from JDK itself is a Collections.sort() method and Comparator interface, which is a strategy interface and defines strategy for comparing objects. Because of this pattern, we don't need to modify sort() method (closed for modification) to compare any object, at same time we can implement Comparator interface to define new comparing strategy (open for extension).
+
+
+Points to remember – 
+1.	This pattern is very similar to state pattern. Please take a look in that parent now.
+2.	
+
+References –
+1.	http://java67.blogspot.in/2012/09/top-10-java-design-pattern-interview-question-answer.html
+
+
+
+State Design Pattern
+Difference/Similarity between Strategy and State design patterns.
+Decorator Design pattern
+Adapter Design Pattern
+Singletone Designpattern
+Different latest options of Singletone design pattern.
+Spring Related
+DI concepts and how to achieve
+Constructor based dependency injection – different examples.
+Setter based Dependency injection – different examples.
+Static factory based dependency injection.
+Auto wiring concepts and examples.
+AOP concepts and examples.
+Property file loading and how to use that in java code.
+Message source by property file with example.
+Web service client part using JAXB as marshalling.
+Web service exposer example
+Wiring using annotations, component scan and stereotypes.
+JDBC template to do insert, update etc. example 
+DAO using Hibernate Dao Support and generic Dao pattern with ready example
+ProxyFactoryBean to initialize spring bean in runtime without loading application context.
+Bean scopes
+In spring framework there are mainly below scopes are present. Default scope is Singleton.
+Scope	Description
+Singleton	Default scope- single bean definition, single object in a single container. Means if a bean is defined once, then in a particular spring context otherwise container, single physical object would be created that spring bean irrespective of how many times it has been referenced from different beans.  
+
+Prototype	Single bean definition and multiple instances is created per container based on its reference.
+
+ 
+Request	Single bean definition and only one instance is created per HTTP request. So lifecycle of that instance is within that HTTP request only. Only valid in the context of a web-aware Spring ApplicationContext.
+
+session	Like request scope, Single bean definition and lifecycle is within a particular session of HTTP. It is applicable to the context of web-aware spring ApplicationContext.
+global session	Similar to session scope, but lifecycle is applicable to global scope generally used in portlet application and applicable to the context of web-aware spring ApplicationContext.
+Application	Scopes a single bean definition to the lifecycle of a ServletContext. Only valid in the context of a web-aware Spring ApplicationContext
+
+**** So in general – singleton/prototype scope is available in non-web contexts and request/session/global session, application is being used in web application scopes.
+How to declare scope of a spring bean ?
+In spring xml style - 
+<bean id="userPreferences" class="com.foo.UserPreferences" scope="session/request etc" />
+
+In Annotation 
+ 
+Custom Scope - We can create custom scope also. Please refer spring documentation for detailed understanding.
+To write custom scope, we need to implement scope interface and implement all the methods here. To register scope we need to do like this – here we are defining SimpleThreadScope which has been provided with spring like below – 
+Scope threadScope = new SimpleThreadScope();
+beanFactory.registerScope("thread", threadScope);
+
+We can also do the Scope registration declaratively, using the CustomScopeConfigurer class:
+ 
+Reference - http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#beans-factory-scopes
+
+Event publishing
+Lifecycle callbacks
+Pre and post initiallization.
+Initializing Spring beans for the first layer class where application context has not loaded by framework.
+General topics
+Eh cache example for configuration to maintain different cache effectively.
+Make asynchronous call and respond as synchronous one. 
+Maven profile and classifier to generate different named artifact.
+Process Related
+How to manage defects using HP ALM and what are the lifecycle we followed etc.
+JIRA. What are the process of delivering story etc.
+General  day to day activity related to projects like Daily calls, Scrum calls etc.
+
+
